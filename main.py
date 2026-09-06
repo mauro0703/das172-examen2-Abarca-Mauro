@@ -6,31 +6,30 @@ from aerocargo import (
 )
 
 
-cargas = [
-    [850, 780, 620, 900],
-    [1000, 820, 760, 700],
-    [650, 1100, 500, 850],
-    [900, 760, 920, 780],
-]
-
-capacidades = [
-    [1000, 1000, 1000, 1000],
-    [1000, 1000, 1000, 1000],
-    [1000, 1000, 1000, 1000],
-    [1000, 1000, 1000, 1000],
-]
-
-tolerancia = 250
-k = 2
-p = 2
-
-
 def mostrar_matriz(matriz, decimales=1):
     for fila in matriz:
         print("  " + "  ".join(f"{valor:.{decimales}f}" for valor in fila))
 
 
 def main():
+    cargas = [
+        [850, 780, 620, 900],
+        [1000, 820, 760, 700],
+        [650, 1100, 500, 850],
+        [900, 760, 920, 780],
+    ]
+
+    capacidades = [
+        [1000, 1000, 1000, 1000],
+        [1000, 1000, 1000, 1000],
+        [1000, 1000, 1000, 1000],
+        [1000, 1000, 1000, 1000],
+    ]
+
+    tolerancia = 250
+    k = 2
+    p = 2
+
     print("AEROCARGO-MATRIX")
     print("Auditoria de distribucion de carga en bahia de aeronave\n")
 
