@@ -23,7 +23,72 @@ AeroCargo-Matrix/
     └── test_aerocargo.py
 ```
 
-### 3. Arquitectura modular
+### 3. Diagrama de flujo
+
+El flujo principal del programa es el siguiente:
+
+```text
+                  +----------------+
+                  |     INICIO     |
+                  +-------+--------+
+                          |
+                          v
+               +-----------------------+
+               | Definir cargas,      |
+               | capacidades,         |
+               | tolerancia, k y p    |
+               +----------+------------+
+                          |
+                          v
+               +-----------------------+
+               | validar_matrices()    |
+               +----------+------------+
+                          |
+                    ¿Datos validos?
+                     /          \
+                   NO            SI
+                   |              |
+                   v              v
+          +---------------+   +-----------------------+
+          | Mostrar error |   | calcular_ocupacion()  |
+          | y terminar    |   +----------+------------+
+          +---------------+              |
+                                         v
+                              +-----------------------+
+                              | Mostrar porcentajes  |
+                              | y sobrecargas        |
+                              +----------+------------+
+                                         |
+                                         v
+                              +-----------------------+
+                              | evaluar_balance()    |
+                              +----------+------------+
+                                         |
+                                         v
+                              +-----------------------+
+                              | Mostrar desbalance   |
+                              | y estado del balance |
+                              +----------+------------+
+                                         |
+                                         v
+                              +-------------------------+
+                              | extraer_submatriz_      |
+                              | critica(porcentajes,k,p)|
+                              +-----------+-------------+
+                                          |
+                                          v
+                              +-------------------------+
+                              | Mostrar submatriz      |
+                              | critica y resultados   |
+                              +-----------+-------------+
+                                          |
+                                          v
+                                  +---------------+
+                                  |      FIN      |
+                                  +---------------+
+```
+
+### 4. Arquitectura modular
 
 ```text
                  +----------------------+
@@ -50,10 +115,10 @@ AeroCargo-Matrix/
              v                              |
  +------------------------+                |
  | extraer_submatriz_     |<---------------+
- | critica()              |
- | - ventana k x p        |
- | - mayor promedio       |
- +------------------------+
+ | critica()              |                |
+ | - ventana k x p        |                |
+ | - mayor promedio       |                |
+ +------------------------+                |
              |
              v
        resultados finales
@@ -61,7 +126,7 @@ AeroCargo-Matrix/
 
 Las funciones reciben sus datos por parametros y devuelven resultados. No dependen de variables globales ni modifican las matrices que reciben.
 
-### 4. Funciones y contratos
+### 5. Funciones y contratos
 
 `validar_matrices(cargas, capacidades)`
 
@@ -87,11 +152,11 @@ Las funciones reciben sus datos por parametros y devuelven resultados. No depend
 - Salida: una nueva submatriz `k x p` con el mayor promedio de ocupacion.
 - En empate se conserva la primera encontrada en el recorrido por filas y columnas.
 
-### 5. Casos considerados
+### 6. Casos considerados
 
 Se probaron casos normales y de borde: matriz minima `2 x 2`, columnas pares, columnas impares, pesos iguales a cero, pesos negativos, capacidades iguales a cero, dimensiones diferentes, filas irregulares, ventanas fuera de rango y verificacion de que las matrices de entrada no sean alteradas.
 
-### 6. Complejidad computacional
+### 7. Complejidad computacional
 
 Sea `N` el numero de filas y `M` el numero de columnas.
 
@@ -99,7 +164,7 @@ La validacion, el calculo de ocupacion y el calculo de pesos por fila recorren l
 
 La extraccion de una ventana `k x p` revisa cada posicion posible y calcula su promedio. Su forma directa es `O((N-k+1)(M-p+1)kp)`, que en el peor caso puede crecer mas que `O(N x M)`. Esta eleccion se hace para mantener la solucion clara y acorde con el recorrido matricial aprendido en clase.
 
-### 7. Ejecucion
+### 8. Ejecucion
 
 Desde la carpeta del proyecto:
 
@@ -113,10 +178,10 @@ Para ejecutar las pruebas:
 python -m unittest discover -s tests -v
 ```
 
-### 8. Resultado esperado con los datos de prueba
+### 9. Resultado esperado con los datos de prueba
 
 La matriz de porcentajes contiene valores como `85.0`, `78.0`, `110.0`, etc. Las celdas con mas de `100 %` se reportan como coordenadas. Tambien se muestra el peso total de cada fila, el desbalance lateral y la submatriz critica `2 x 2`.
 
-### 9. Relacion con el contenido de clase
+### 10. Relacion con el contenido de clase
 
 La implementacion utiliza listas y matrices bidimensionales y mantiene una separacion sencilla por funciones. La estructura de matrices se puede relacionar con el trabajo de NumPy visto en clase, donde se presentan arreglos multidimensionales y operaciones sobre matrices. Para la entrega principal se mantuvieron estructuras basicas de Python para que la logica del algoritmo sea visible.
