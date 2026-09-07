@@ -179,6 +179,14 @@ Para ejecutar el programa principal:
 
 ```bash
 python main.py
+```
+Para ejecutar las pruebas unitarias:
+```bash
+python -m unittest discover -s tests -v
+```
+
+El programa principal valida las matrices, calcula los porcentajes de ocupación, identifica las celdas sobrecargadas, evalúa el balance lateral y extrae la submatriz crítica.
+Las pruebas unitarias incluyen casos normales y casos de borde para verificar el comportamiento de las funciones.
 
 ### 9. Resultado esperado con los datos de prueba
 
