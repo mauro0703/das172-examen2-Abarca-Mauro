@@ -158,25 +158,21 @@ Se probaron casos normales y de borde: matriz minima `2 x 2`, columnas pares, co
 
 ### 7. Complejidad computacional
 
-Sea `N` el numero de filas y `M` el numero de columnas.
+Las funciones principales recorren la matriz por filas y columnas. Si la matriz tiene N filas y M columnas, cada celda se procesa una vez, por lo que el tiempo de ejecución de estas operaciones es O(N x M).
 
-La validacion, el calculo de ocupacion y el calculo de pesos por fila recorren las celdas de la matriz una vez, por lo que su tiempo es `O(N x M)`. La matriz de porcentajes necesita `O(N x M)` memoria y la lista de sobrecargas, en el peor caso, tambien puede crecer hasta ese mismo orden.
+- `validar_matrices()`: recorre las filas y las columnas para comprobar las dimensiones y los valores de las matrices. Su complejidad es O(N x M).
+- `calcular_ocupacion()`: recorre cada celda una vez para calcular el porcentaje de ocupación y detectar las sobrecargas. Su complejidad es O(N x M).
+- `evaluar_balance()`: recorre las filas y sus columnas para obtener los pesos y comparar los lados de la matriz. Su complejidad es O(N x M).
 
-La extraccion de una ventana `k x p` revisa cada posicion posible y calcula su promedio. Su forma directa es `O((N-k+1)(M-p+1)kp)`, que en el peor caso puede crecer mas que `O(N x M)`. Esta eleccion se hace para mantener la solucion clara y acorde con el recorrido matricial aprendido en clase.
+Para `calcular_ocupacion()` se genera una nueva matriz de porcentajes del mismo tamaño N x M. Por esta razón, el espacio adicional utilizado para almacenar estos resultados es O(N x M).
 
-### 8. Ejecucion
+La función `extraer_submatriz_critica()` utiliza un recorrido de las ventanas k x p posibles. Al analizar directamente cada ventana, su complejidad es:
 
-Desde la carpeta del proyecto:
+O((N-k+1)(M-p+1)kp)
 
-```bash
-python main.py
-```
+Esto se debe a que se recorren las posiciones posibles de la ventana y se calculan los valores que contiene cada submatriz.
 
-Para ejecutar las pruebas:
-
-```bash
-python -m unittest discover -s tests -v
-```
+En general, las operaciones de recorrido y transformación de las matrices utilizadas por el programa mantienen una complejidad lineal respecto a la cantidad de celdas, O(N x M), mientras que la búsqueda de la submatriz crítica depende además del tamaño de la ventana seleccionada.
 
 ### 9. Resultado esperado con los datos de prueba
 
