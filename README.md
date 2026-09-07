@@ -44,7 +44,7 @@ El flujo principal del programa es el siguiente:
                +----------+------------+
                           |
                     ¿Datos validos?
-                     /          \
+                     /          \\
                    NO            SI
                    |              |
                    v              v
@@ -110,14 +110,14 @@ El flujo principal del programa es el siguiente:
  | - porcentajes          |     | - peso por fila        |
  | - sobrecargas          |     | - desbalance lateral   |
  +-----------+------------+     | - balance aprobado     |
-             |                  +-----------+------------+
-             v                              |
- +------------------------+                |
- | extraer_submatriz_     |<---------------+
- | critica()              |                |
- | - ventana k x p        |                |
- | - mayor promedio       |                |
- +------------------------+                |
+             |                  +------------------------+
+             v
+ +------------------------+
+ | extraer_submatriz_     |
+ | critica()              |
+ | - ventana k x p        |
+ | - mayor promedio       |
+ +-----------+------------+
              |
              v
        resultados finales
@@ -180,7 +180,9 @@ Para ejecutar el programa principal:
 ```bash
 python main.py
 ```
+
 Para ejecutar las pruebas unitarias:
+
 ```bash
 python -m unittest discover -s tests -v
 ```
