@@ -16,7 +16,6 @@ Esto es importante porque una carga mayor a la capacidad local puede afectar la 
 AeroCargo-Matrix/
 ├── aerocargo.py
 ├── main.py
-├── requirements.txt
 ├── .gitignore
 ├── README.md
 └── tests/
@@ -173,6 +172,13 @@ O((N-k+1)(M-p+1)kp)
 Esto se debe a que se recorren las posiciones posibles de la ventana y se calculan los valores que contiene cada submatriz.
 
 En general, las operaciones de recorrido y transformación de las matrices utilizadas por el programa mantienen una complejidad lineal respecto a la cantidad de celdas, O(N x M), mientras que la búsqueda de la submatriz crítica depende además del tamaño de la ventana seleccionada.
+
+### 8. Ejecución
+
+Para ejecutar el programa principal:
+
+```bash
+python main.py
 
 ### 9. Resultado esperado con los datos de prueba
 
